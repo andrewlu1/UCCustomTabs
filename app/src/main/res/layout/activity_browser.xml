@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <include layout="@layout/inc_content" />
+    android:layout_height="match_parent"
+    tools:context=".ui.ChromeActivity">
 
     <android.support.design.widget.AppBarLayout
-        style="@style/AppTheme.Overlayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#99ccaa">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolBar"
@@ -20,12 +19,24 @@
             android:clipToPadding="true"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:navigationIcon="?attr/homeAsUpIndicator"
-            app:subtitleTextColor="@android:color/white"
-            app:title=" "
-            app:titleTextColor="@android:color/white">
+            app:theme="@style/AppTheme.PopupOverlay"
+            app:title=" ">
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MainActivity">
+
+        <FrameLayout
+            android:id="@+id/webViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </FrameLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

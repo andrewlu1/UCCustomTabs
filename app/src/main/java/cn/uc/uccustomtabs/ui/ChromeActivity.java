@@ -3,7 +3,9 @@ package cn.uc.uccustomtabs.ui;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.customtabs.CustomTabsCallback;
@@ -42,11 +44,16 @@ public class ChromeActivity extends AppCompatActivity {
         webViewContainer = (FrameLayout) findViewById(R.id.webViewContainer);
         toolBar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
+
+        toolBar.setTitleTextColor(Color.WHITE);
+        toolBar.setSubtitleTextColor(Color.WHITE);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         properties = CustomTabsProperties.getFromIntent(getIntent());
         if (properties.getToken() != null) {
             callback = properties.getToken().getCallback();
         }
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //设置返回按钮事件.
         toolBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -108,6 +115,9 @@ public class ChromeActivity extends AppCompatActivity {
         if (closeBtnIcon != null) {
             toolBar.setNavigationIcon(new BitmapDrawable(getResources(), closeBtnIcon));
         }
+
+        //选择是否禁止滚动隐藏标题栏.
+        boolean autoHide = properties.isEnableUrlBarHiding();
 
     }
 
